@@ -99,6 +99,7 @@ class Bike
       false
     end
 end
+
 ```
 then the test will be passed as the `bike` is indeed not crying (we expect it `not_to` `be_crying`). In case the method returns `true`, the test won't be passed.
 
