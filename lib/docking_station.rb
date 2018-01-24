@@ -1,17 +1,25 @@
 class DockingStation
 
-  attr_reader :bike
+  # attr_reader :bikes
   # when we write on an instance of DockingStation class (eg. docking_station)
   # docking_station.bike, then it will return what is stored under @bike.
 
-  def dock(bike)
-    fail 'Docking station full' if @bike 
-    @bike = bike
+  def initialize
+    @bikes = []
   end
 
   def release_bike
-    fail 'There are no bikes!' unless @bike
-    return @bike
+    # fail 'There are no bikes!'
+    if @bikes.empty?
+      puts 'There are no bikes!'
+    else
+      return @bikes.pop
+    end
+  end
+
+  def dock(bike)
+    fail 'Docking station full' if @bikes.count >= 20
+    @bikes << bike
   end
 
 
