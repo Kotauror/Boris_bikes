@@ -5,7 +5,8 @@ class DockingStation
   # docking_station.bike, then it will return what is stored under @bike. 
 
   def release_bike
-    return Bike.new
+    fail 'There are no bikes!' unless @bike
+    return @bike
   end
 
   def dock(bike)
