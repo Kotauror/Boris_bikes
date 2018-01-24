@@ -2,16 +2,19 @@ class DockingStation
 
   attr_reader :bike
   # when we write on an instance of DockingStation class (eg. docking_station)
-  # docking_station.bike, then it will return what is stored under @bike. 
+  # docking_station.bike, then it will return what is stored under @bike.
+
+  def dock(bike)
+    fail 'Docking station full' if @bike 
+    @bike = bike
+  end
 
   def release_bike
     fail 'There are no bikes!' unless @bike
     return @bike
   end
 
-  def dock(bike)
-    @bike = bike
-  end
+
 
   # dock method is only "taking" the bike from user and pass it to a variable,
   # so we can use this 'bike' in other methods as well.

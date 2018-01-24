@@ -30,11 +30,20 @@ describe DockingStation do # syntax for testing class instance - accepts class n
     expect(subject.bike).to eq bike
   end
 
+  describe '#dock' do
+    it 'raises error when full' do
+      subject.dock(Bike.new)
+      expect { subject.dock Bike.new }.to raise_error "Docking station full"
+    end
+  end
+
   describe '#release_bike' do
     it 'raises error when empty' do
       expect { subject.release_bike }.to raise_error "There are no bikes!"
     end
   end
+
+
 end
 
 
