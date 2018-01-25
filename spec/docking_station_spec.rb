@@ -24,15 +24,14 @@ describe DockingStation do
 
   describe '#dock' do
     it 'raises error when full' do
-      # 20.times { subject.dock(Bike.new) }
-      @bike.length > 20
+      20.times { subject.dock(Bike.new) }
       expect { subject.dock Bike.new }.to raise_error "Docking station full"
     end
   end
 
   describe '#release_bike' do
     it 'raises error when empty' do
-      @bike = []
+      @bikes = []
       expect { subject.release_bike }.to raise_error 'No bikes available'
     end
   end
