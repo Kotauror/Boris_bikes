@@ -26,7 +26,6 @@ describe DockingStation do
 
   describe '#release_bike' do
     it 'raises error when empty' do
-      @bikes = []
       expect { subject.release_bike }.to raise_error 'No bikes available'
     end
   end
