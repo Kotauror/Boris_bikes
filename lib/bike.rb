@@ -1,5 +1,7 @@
 class Bike
 
+  attr_writer :working
+
   def initialize(working=true) #set the default working state to true
     @working = working
   end
