@@ -14,9 +14,27 @@ describe Van do
   # let(:bike_broken) { double('bike', working?: false) }
   # let(:station) { double("station" }
   describe "#collect_bikes" do
-    it "it returns broken bikes in van" do
+    it "returns broken bikes in van" do
       expect(van.collect_bikes(station)).to eq [bike_broken]
     end
   end
+
+  describe "#empty?" do
+    it "returns false for non-empty van" do
+      van = Van.new
+      van.collection_of_bikes = [bike_working, bike_broken]
+      expect(van).not_to be_empty
+    end
+
+
+    it "returns true for empty van" do
+      van = Van.new
+      expect(van).to be_empty
+    end
+  end
+
+    describe"#empty_van_of_bikes" do
+      
+    end
 
 end
