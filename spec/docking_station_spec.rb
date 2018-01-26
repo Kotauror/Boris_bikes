@@ -2,28 +2,33 @@ require 'docking_station'
 
 describe DockingStation do
 
+  let(:bike_working) { double :bike_working, working?: true }
+  let(:bike_broken) { double :bike_broken, working?: false }
+  # create two doubles at the top - for a working bike (will be tested in working bike methods)
+  # and a bike that's not working. Instead of creating a double in each test (see hash in 'releases working bikes' test),
+  # we create the doubles once and then reuse them.
+
+
   it { is_expected.to respond_to :release_bike}
 
   it 'releases working bikes' do
 
-    bike = double("a bike")
-    subject.dock(bike)
-    expect(subject.release_bike).to be_instance_of(Bike)
+    # bike = double("a bike", working?: true)
+    subject.dock(bike_working)
+    expect(subject.release_bike).to be_working
   end
 
   it { is_expected.to respond_to(:dock).with(1).argument }
 
   it 'docks bike' do
-    bike = double("a bike")
     # bike = Bike.new # double here
-    expect(subject.dock(bike)).to eq [bike]
+    expect(subject.dock(bike_working)).to eq [bike_working]
    end
 
   describe '#dock' do
     it 'raises error when full' do
-      bike = double("a bike")
-      subject.capacity.times { subject.dock bike} # double here
-      expect { subject.dock bike }.to raise_error 'Docking station full' # double here
+      subject.capacity.times { subject.dock bike_working} # double here
+      expect { subject.dock bike_working }.to raise_error 'Docking station full' # double here
     end
   end
 
@@ -32,11 +37,11 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error 'No bikes available'
     end
     it 'doesnt release broken bikes' do
-      bike = double("a bike")
+      # bike = double("a bike", working?: false)
       # bike = Bike.new(false) # double here
       station = DockingStation.new
-      station.dock(bike)
-      expect(station.release_bike).to eq nil #doesn't release bike as there is only one bike and it is broken
+      station.dock(bike_broken)
+      expect { station.release_bike }.to raise_error 'No bikes available' #doesn't release bike as there is only one bike and it is broken
     end
   end
 
@@ -45,11 +50,10 @@ describe DockingStation do
     # let(:bike) { Bike.new } # double here
     # bike = Bike.new
     it 'defaults capacity' do
-      bike = double("a bike")
       described_class::DEFAULT_CAPACITY.times do
-        subject.dock(bike)
+        subject.dock(bike_broken)
       end
-      expect{ subject.dock(bike) }.to raise_error 'Docking station full'
+      expect{ subject.dock(bike_broken) }.to raise_error 'Docking station full'
     end
   end
 
