@@ -57,6 +57,15 @@ describe DockingStation do
     end
   end
 
+  describe"#count_of_broken_bikes" do
+    it "returns the count of broken bikes" do
+      station= DockingStation.new
+      station.dock(bike_working)
+      station.dock(bike_broken)
+      expect(station.count_of_broken_bikes).to eq 1
+    end
+  end
+
 
 
 end

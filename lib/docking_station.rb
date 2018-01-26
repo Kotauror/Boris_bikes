@@ -28,6 +28,10 @@ class DockingStation
     @bikes << bike
   end
 
+  def count_of_broken_bikes
+    @bikes.count{ |bike| bike.working? }
+  end
+
   private
 
   attr_reader :bikes
