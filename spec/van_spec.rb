@@ -17,10 +17,6 @@ describe Van do
     it "it returns broken bikes in van" do
       expect(van.collect_bikes(station)).to eq [bike_broken]
     end
-    it "checks no broken bikes in station after collection" do
-      expect(station.count_of_broken_bikes).to eq 0
-
-    end
   end
 
 end

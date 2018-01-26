@@ -66,6 +66,14 @@ describe DockingStation do
     end
   end
 
+describe"#empty_station_of_broken_bikes" do
+  it "empties the station of broken bikes" do
+    station = DockingStation.new
+    station.dock(bike_working)
+    station.dock(bike_broken)
+    expect(station.empty_station_of_broken_bikes).to eq [bike_broken]
 
+  end
+end
 
 end

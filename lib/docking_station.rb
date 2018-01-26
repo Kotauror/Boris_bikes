@@ -32,6 +32,17 @@ class DockingStation
     @bikes.count{ |bike| bike.working? }
   end
 
+  def empty_station_of_broken_bikes
+    broken_bikes_array = []
+    @bikes.each { |bike|
+      if !bike.working? then
+        broken_bikes_array.push(bike)
+        @bikes.delete(bike)
+      end
+    }
+    return broken_bikes_array
+  end
+
   private
 
   attr_reader :bikes
