@@ -28,6 +28,12 @@ describe DockingStation do
     it 'raises error when empty' do
       expect { subject.release_bike }.to raise_error 'No bikes available'
     end
+    it 'doesnt release broken bikes' do
+      bike = Bike.new(false)
+      station = DockingStation.new
+      station.dock(bike)
+      expect(station.release_bike).to eq nil #doesn't release bike as there is only one bike and it is broken 
+    end
   end
 
   describe 'initialization' do
@@ -41,5 +47,7 @@ describe DockingStation do
       expect{ subject.dock(bike) }.to raise_error 'Docking station full'
     end
   end
+
+
 
 end
