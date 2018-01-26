@@ -2,8 +2,8 @@ require 'docking_station'
 
 describe DockingStation do
 
-  let(:bike_working) { double :bike_working, working?: true }
-  let(:bike_broken) { double :bike_broken, working?: false }
+  let(:bike_working) { double "a bike that is working", working?: true }
+  let(:bike_broken) { double "a bike that is not working", working?: false }
   # create two doubles at the top - for a working bike (will be tested in working bike methods)
   # and a bike that's not working. Instead of creating a double in each test (see hash in 'releases working bikes' test),
   # we create the doubles once and then reuse them.
