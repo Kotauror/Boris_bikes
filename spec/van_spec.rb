@@ -33,8 +33,11 @@ describe Van do
     end
   end
 
-    describe"#empty_van_of_bikes" do
-      
+  describe "#delete_bikes" do
+    it "deletes bikes from van" do
+    van = Van.new
+    van.collection_of_bikes = [bike_working, bike_broken]
+    expect(van.delete_bikes).to be_empty
     end
-
+  end 
 end

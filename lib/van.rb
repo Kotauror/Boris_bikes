@@ -18,4 +18,8 @@ class Van
     @collection_of_bikes
   end
 
+  def delete_bikes
+    @collection_of_bikes = []
+  end
+
 end
