@@ -1,4 +1,4 @@
-require 'bike'
+require_relative 'bike'
 
 class Garage
 
